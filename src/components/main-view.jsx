@@ -1,36 +1,31 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MovieCard } from "./movie-card";
 import { MovieView } from "./movie-view";
 
 export const MainView = () => {
-  const [movies, setMovies] = useState([
-    {
-      id: 1,
-      title: "The Exorcist",
-      image: "https://m.media-amazon.com/images/I/81+hQdlnKWL._AC_UY327_FMwebp_QL65_.jpg",
-      description: "When a teenage girl is possessed by a mysterious entity, her mother seeks the help of two priests to save her daughter.",
-      director: "William Friedkin",
-      genre: "Horror"
-    },
-    {
-      id: 2,
-      title: "The Silence of the Lambs",
-      image: "https://m.media-amazon.com/images/I/A16clOJZvOL._AC_UY327_FMwebp_QL65_.jpg",
-      description: "A young F.B.I. cadet must receive the help of an incarcerated and manipulative cannibal killer to help catch another serial killer.",
-      director: "Jonathan Demme",
-      genre: "Crime"
-    },
-    {
-      id: 3,
-      title: "The Sixth Sense",
-      image: "https://m.media-amazon.com/images/I/711uZBBjIeL._AC_UY327_FMwebp_QL65_.jpg",
-      description: "Malcom Crowe, a child psychologist, starts treating a young boy, Cole, who encounters dead people and convinces him to help them. In turn, Cole helps Malcolm reconcile with his estranged wife.",
-      director: "M. Night Shyamalan",
-      genre: "Thriller"
-    }
-  ]);
+  const [movies, setMovies] = useState([]);
 
   const [selectedMovie, setSelectedMovie] = useState(null);
+
+  useEffect(() => {
+    fetch('https://you-can-run.herokuapp.com/movies')
+      .then((response) => response.json())
+      .then((data) => {
+        const moviesFromApi = data.map((movie) => {
+          return {
+            _id: movie.id,
+            Title: movie.Title,
+            ImagePath: movie.ImagePath,
+            Description: movie.Description,
+            Genre: {
+              Name: movie.Genre.Name
+            },
+            Featured: movie.Featured
+          };
+        });
+        setMovies(moviesFromApi);
+      });
+  }, []);
 
   if (selectedMovie) {
     return (
@@ -45,7 +40,7 @@ export const MainView = () => {
   return (
     <div>
       {movies.map((movie) => (
-        <MovieCard key={movie.id}
+        <MovieCard key={movie.Title}
         movie={movie}
         onMovieClick={(newSelectedMovie) => {
           setSelectedMovie(newSelectedMovie);
