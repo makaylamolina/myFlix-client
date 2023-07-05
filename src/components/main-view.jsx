@@ -11,6 +11,8 @@ export const MainView = () => {
     fetch('https://you-can-run.herokuapp.com/movies')
       .then((response) => response.json())
       .then((data) => {
+        console.log("books from api: ", data);
+
         const moviesFromApi = data.map((movie) => {
           return {
             _id: movie.id,
