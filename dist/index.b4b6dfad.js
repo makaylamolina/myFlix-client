@@ -27323,6 +27323,9 @@ const MainView = ()=>{
                     Title: movie.Title,
                     ImagePath: movie.ImagePath,
                     Description: movie.Description,
+                    Director: {
+                        Name: movie.Director.Name
+                    },
                     Genre: {
                         Name: movie.Genre.Name
                     },
@@ -27339,14 +27342,14 @@ const MainView = ()=>{
         onBackClick: ()=>setSelectedMovie(null)
     }, void 0, false, {
         fileName: "src/components/main-view.jsx",
-        lineNumber: 37,
+        lineNumber: 40,
         columnNumber: 7
     }, undefined);
     if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: "This list is empty!"
     }, void 0, false, {
         fileName: "src/components/main-view.jsx",
-        lineNumber: 42,
+        lineNumber: 45,
         columnNumber: 12
     }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27357,12 +27360,12 @@ const MainView = ()=>{
                 }
             }, movie.Title, false, {
                 fileName: "src/components/main-view.jsx",
-                lineNumber: 48,
+                lineNumber: 51,
                 columnNumber: 9
             }, undefined))
     }, void 0, false, {
         fileName: "src/components/main-view.jsx",
-        lineNumber: 46,
+        lineNumber: 49,
         columnNumber: 5
     }, undefined);
 };
