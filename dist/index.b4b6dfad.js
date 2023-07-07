@@ -28412,8 +28412,8 @@ const LoginView = ({ onLoggedIn  })=>{
         //this prevents the default behavior of the form (reloading the page)
         event.preventDefault();
         const data = {
-            access: username,
-            secret: setPassword
+            Username: username,
+            Password: password
         };
         fetch("https://you-can-run.herokuapp.com/login", {
             method: "POST",
