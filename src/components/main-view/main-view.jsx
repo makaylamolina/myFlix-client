@@ -3,6 +3,7 @@ import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
+import { Row, Col, Button } from "react-bootstrap";
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -41,9 +42,10 @@ export const MainView = () => {
       });
     }, [token]);
 
-    if (!user) {
-      return (
-        <>
+  return (
+    <Row className="justify-content-md-center">
+      {!user ? (
+        <Col md={4}>
           <LoginView
             onLoggedIn={(user, token) => {
               setUser(user);
@@ -52,38 +54,38 @@ export const MainView = () => {
           />
           or
           <SignupView />
-        </>
-      );
-    }
-
-  return (
-    <div>
-      <button
-        onClick={() => {
-          setUser(null);
-          setToken(null);
-          localStorage.clear();
-        }}
-      >
-        Logout
-      </button>
-
-      {selectedMovie ? (
-        <MovieView
-          movie={selectedMovie}
-          onBackClick={() => setSelectedMovie(null)}
-        />
-      ) : (
-        movies.map((movie) => (
-          <MovieCard
-            key={movie._id}
-            movie={movie}
-            onMovieClick={(newSelectedMovie) =>
-              setSelectedMovie(newSelectedMovie)
-            }
+        </Col>
+      ) : selectedMovie ? (
+        <Col md={8}>
+          <MovieView
+            movie={selectedMovie}
+            onBackClick={() => setSelectedMovie(null)}
           />
-        ))
+        </Col>
+      ) : movies.length === 0 ? (
+        <div>This list is empty!</div>
+      ) : (
+        <>
+          {movies.map((movie) => (
+            <Col 
+              key={movie.id}
+              md={3}
+              className="mb-4">
+              <MovieCard
+                movie={movie}
+                onMovieClick={(newSelectedMovie) => {
+                  setSelectedMovie(newSelectedMovie);
+                }}
+              />
+            </Col>
+          ))}
+          <Button
+            onClick={() => { storedUser(null); setToken(token); localStorage.clear(); }}
+          >
+            Logout
+          </Button>
+        </>
       )}
-    </div>
+    </Row>
   );
 };
