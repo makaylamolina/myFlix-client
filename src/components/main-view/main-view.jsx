@@ -80,7 +80,7 @@ export const MainView = () => {
             </Col>
           ))}
           <Button
-            onClick={() => { storedUser(null); setToken(token); localStorage.clear(); }}
+            onClick={() => { setUser(null); setToken(token); localStorage.clear(); }}
           >
             Logout
           </Button>
