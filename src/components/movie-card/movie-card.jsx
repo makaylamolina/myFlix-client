@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import Card from "react-bootstrap";
+import Card from "react-bootstrap/Card";
 
 export const MovieCard = ({ movie, onMovieClick }) => {
   return (
@@ -11,12 +11,12 @@ export const MovieCard = ({ movie, onMovieClick }) => {
     >
       <Card.Img
         variant="top"
-        src={movie.image}
+        src={movie.ImagePath}
         className='border'
       />
       <Card.Body>
-        <Card.Title>{movie.title}</Card.Title>
-        <Card.Text>{movie.director}</Card.Text>
+        <Card.Title>{movie.Title}</Card.Title>
+        <Card.Text>{movie.Director.Name}</Card.Text>
       </Card.Body>
     </Card>
   );
