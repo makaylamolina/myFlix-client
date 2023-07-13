@@ -1,7 +1,12 @@
-import PropTypes from 'prop-types';
+import { useParams } from "react-router";
+import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 
-export const MovieView = ({ movie, onBackClick }) => {
+export const MovieView = ({ movie }) => {
+  const { movieId } = useParams();
+  
+  const movie = movies.find((b) => b.id === movieId);
+
   return (
     <div>
       <div>
@@ -23,24 +28,9 @@ export const MovieView = ({ movie, onBackClick }) => {
         <span>Genre: </span>
         <span>{movie.Genre.Name}</span>
       </div>
-      <Button onClick={onBackClick}>Back</Button>
+      <Link to={`/`}>
+        <Button>Back</Button>
+      </Link>
     </div>
   )
 }
-
-MovieView.propTypes = {
-  movie: PropTypes.shape({
-    image: PropTypes.string,
-    title: PropTypes.string,
-    description: PropTypes.string.isRequired,
-    genre: PropTypes.shape({
-      name: PropTypes.string
-    }),
-    director: PropTypes.shape({
-      name: PropTypes.string
-    }),
-  }).isRequired,
-  onBackClick: PropTypes.func.isRequired
-};
-
-export default MovieView;
