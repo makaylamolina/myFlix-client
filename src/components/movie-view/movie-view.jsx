@@ -1,11 +1,54 @@
+import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { Link } from "react-router-dom";
+import { Link, useFetcher } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 
-export const MovieView = ({ movie }) => {
+export const MovieView = ({ movies, user, setUser, token }) => {
   const { movieId } = useParams();
+  const [ isFavorite, setIsFavorite ] = useState(false);
+
+  useEffect(() => {
+    const isFavorited = user.FavoriteMovies.includes(movieId)
+    setIsFavorite(isFavorited)
+  }, []);
+
+  const removeFavorite = () => {
+    fetch(`https://you-can-run.herokuapp.com/users/${user.Username}/${movieId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+      }
+    }).then((response) => {
+      if (response.ok) {
+        return response.json()
+      }
+    }).then((data) => {
+      setIsFavorite(false);
+      localStorage.setItem("user", JSON.stringify(data));
+      setUser(data);
+    })
+  };
+
+  const addToFavorite = () => {
+    fetch(`https://you-can-run.herokuapp.com/users/${user.Username}/${movieId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      }
+    }).then((response) => {
+      if (response.ok) {
+        return response.json()
+      }
+    }).then((data) => {
+      setIsFavorite(true);
+      localStorage.setItem("user", JSON.stringify(data));
+      setUser(data);
+    })
+  }
   
-  const movie = movies.find((b) => b.id === movieId);
+  const movie = movies.find((m) => m.id === movieId);
 
   return (
     <div>
