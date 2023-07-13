@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { Link, useFetcher } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 
 export const MovieView = ({ movies, user, setUser, token }) => {
@@ -71,6 +71,13 @@ export const MovieView = ({ movies, user, setUser, token }) => {
         <span>Genre: </span>
         <span>{movie.Genre.Name}</span>
       </div>
+
+      {isFavorite ? (
+        <Button onClick={removeFavorite}>Remove from favorites</Button>
+      ) : (
+        <Button onClick={addToFavorite}>Add to favorites</Button>
+      )}
+
       <Link to={`/`}>
         <Button>Back</Button>
       </Link>

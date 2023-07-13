@@ -1,13 +1,12 @@
 import PropTypes from "prop-types";
-import Card from "react-bootstrap/Card";
+import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-export const MovieCard = ({ movie, onMovieClick }) => {
+export const MovieCard = ({ movie }) => {
   return (
     <Card
       className='h-100'
       border='primary'
-      onClick={() => onMovieClick(movie)}
       style={{ cursor: 'pointer' }}
     >
       <Card.Img
