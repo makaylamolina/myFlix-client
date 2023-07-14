@@ -71,7 +71,7 @@ export const ProfileView = ({ user, setUser, token, movies, onlogout }) => {
       </Row>
       <Row>
         <h3>Update your information:</h3>
-        <Form onSubumit={handleSubmit}>
+        <Form onSubmit={handleSubmit}>
           <Form.Group>
             <Form.Label>Username:</Form.Label>
             <Form.Control
@@ -111,7 +111,7 @@ export const ProfileView = ({ user, setUser, token, movies, onlogout }) => {
               onChange={(e) => setBirthday(e.target.value)}
             />
           </Form.Group>
-          <Button variant="primary" type="submit">Save changes.</Button>
+          <Button variant="primary" type="submit">Save changes</Button>
         </Form>
       </Row>
       <Row>
@@ -123,7 +123,7 @@ export const ProfileView = ({ user, setUser, token, movies, onlogout }) => {
         ))}
       </Row>
       <Button variant="primary" onClick={handleShowModal}>
-        Delete my account.
+        Delete my account
       </Button>
       <Modal show={showModal} onHide={handleCloseModal}>
         <Modal.Header closeButton>
