@@ -27569,7 +27569,7 @@ const MovieView = ({ movies , user , setUser , token  })=>{
             setUser(data);
         });
     };
-    const addToFavorite = ()=>{
+    const addFavorite = ()=>{
         fetch(`https://you-can-run.herokuapp.com/users/${user.Username}/${movieId}`, {
             method: "PUT",
             headers: {
@@ -27697,7 +27697,7 @@ const MovieView = ({ movies , user , setUser , token  })=>{
                 lineNumber: 76,
                 columnNumber: 9
             }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
-                onClick: addToFavorite,
+                onClick: addFavorite,
                 children: "Add to favorites"
             }, void 0, false, {
                 fileName: "src/components/movie-view/movie-view.jsx",
@@ -27705,7 +27705,7 @@ const MovieView = ({ movies , user , setUser , token  })=>{
                 columnNumber: 9
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
-                to: `/`,
+                to: "/",
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
                     children: "Back"
                 }, void 0, false, {

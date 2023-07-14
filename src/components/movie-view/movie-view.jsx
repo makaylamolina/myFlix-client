@@ -30,7 +30,7 @@ export const MovieView = ({ movies, user, setUser, token }) => {
     })
   };
 
-  const addToFavorite = () => {
+  const addFavorite = () => {
     fetch(`https://you-can-run.herokuapp.com/users/${user.Username}/${movieId}`, {
       method: "PUT",
       headers: {
@@ -75,10 +75,10 @@ export const MovieView = ({ movies, user, setUser, token }) => {
       {isFavorite ? (
         <Button onClick={removeFavorite}>Remove from favorites</Button>
       ) : (
-        <Button onClick={addToFavorite}>Add to favorites</Button>
+        <Button onClick={addFavorite}>Add to favorites</Button>
       )}
 
-      <Link to={`/`}>
+      <Link to={"/"}>
         <Button>Back</Button>
       </Link>
     </div>
