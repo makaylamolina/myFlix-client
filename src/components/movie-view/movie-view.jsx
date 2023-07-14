@@ -1,7 +1,55 @@
-import PropTypes from 'prop-types';
+import { useEffect, useState } from "react";
+import { useParams } from "react-router";
+import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 
-export const MovieView = ({ movie, onBackClick }) => {
+export const MovieView = ({ movies, user, setUser, token }) => {
+  const { movieId } = useParams();
+  const [ isFavorite, setIsFavorite ] = useState(false);
+
+  useEffect(() => {
+    const isFavorited = user.FavoriteMovies.includes(movieId)
+    setIsFavorite(isFavorited)
+  }, []);
+
+  const removeFavorite = () => {
+    fetch(`https://you-can-run.herokuapp.com/users/${user.Username}/${movieId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+      }
+    }).then((response) => {
+      if (response.ok) {
+        return response.json()
+      }
+    }).then((data) => {
+      setIsFavorite(false);
+      localStorage.setItem("user", JSON.stringify(data));
+      setUser(data);
+    })
+  };
+
+  const addFavorite = () => {
+    fetch(`https://you-can-run.herokuapp.com/users/${user.Username}/${movieId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      }
+    }).then((response) => {
+      if (response.ok) {
+        return response.json()
+      }
+    }).then((data) => {
+      setIsFavorite(true);
+      localStorage.setItem("user", JSON.stringify(data));
+      setUser(data);
+    })
+  }
+  
+  const movie = movies.find((m) => m.Title === movieId);
+
   return (
     <div>
       <div>
@@ -23,24 +71,16 @@ export const MovieView = ({ movie, onBackClick }) => {
         <span>Genre: </span>
         <span>{movie.Genre.Name}</span>
       </div>
-      <Button onClick={onBackClick}>Back</Button>
+
+      {isFavorite ? (
+        <Button onClick={removeFavorite}>Remove from favorites</Button>
+      ) : (
+        <Button onClick={addFavorite}>Add to favorites</Button>
+      )}
+
+      <Link to={"/"}>
+        <Button>Back</Button>
+      </Link>
     </div>
   )
 }
-
-MovieView.propTypes = {
-  movie: PropTypes.shape({
-    image: PropTypes.string,
-    title: PropTypes.string,
-    description: PropTypes.string.isRequired,
-    genre: PropTypes.shape({
-      name: PropTypes.string
-    }),
-    director: PropTypes.shape({
-      name: PropTypes.string
-    }),
-  }).isRequired,
-  onBackClick: PropTypes.func.isRequired
-};
-
-export default MovieView;
