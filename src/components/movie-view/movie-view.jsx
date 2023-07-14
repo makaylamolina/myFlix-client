@@ -48,7 +48,7 @@ export const MovieView = ({ movies, user, setUser, token }) => {
     })
   }
   
-  const movie = movies.find((m) => m.id === movieId);
+  const movie = movies.find((m) => m.Title === movieId);
 
   return (
     <div>

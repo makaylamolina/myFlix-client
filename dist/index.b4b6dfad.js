@@ -27584,7 +27584,7 @@ const MovieView = ({ movies , user , setUser , token  })=>{
             setUser(data);
         });
     };
-    const movie = movies.find((m)=>m.id === movieId);
+    const movie = movies.find((m)=>m.Title === movieId);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -47700,7 +47700,7 @@ const MovieCard = ({ movie  })=>{
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
-                        to: `/movies/${encodeURIComponent(movie.id)}`,
+                        to: `/movies/${encodeURIComponent(movie.Title)}`,
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
                             variant: "link",
                             children: "Open"
