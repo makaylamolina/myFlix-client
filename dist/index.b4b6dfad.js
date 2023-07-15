@@ -47383,7 +47383,7 @@ const ProfileView = ({ user , setUser , token , movies , onlogout  })=>{
             Birthday: birthday
         };
         fetch(`https://you-can-run.herokuapp.com/users/${user.Username}`, {
-            method: "PUT",
+            method: "POST",
             body: JSON.stringify(data),
             headers: {
                 "Content-Type": "application/json",
@@ -47603,7 +47603,7 @@ const ProfileView = ({ user , setUser , token , movies , onlogout  })=>{
                                 lineNumber: 121,
                                 columnNumber: 13
                             }, undefined)
-                        }, movie.id, false, {
+                        }, movie._id, false, {
                             fileName: "src/components/profile-view/profile-view.jsx",
                             lineNumber: 120,
                             columnNumber: 11
@@ -47627,7 +47627,7 @@ const ProfileView = ({ user , setUser , token , movies , onlogout  })=>{
                 show: showModal,
                 onHide: handleCloseModal,
                 children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Modal).Header, {
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.ModalHeader), {
                         closeButton: true,
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Modal).Title, {
                             children: "Delete Account"

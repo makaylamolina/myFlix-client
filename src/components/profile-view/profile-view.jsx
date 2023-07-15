@@ -8,7 +8,7 @@ export const ProfileView = ({ user, setUser, token, movies, onlogout }) => {
   const [email, setEmail] = useState(user.Email);
   const [birthday, setBirthday] = useState(user.Birthday);
   const [showModal, setShowModal] = useState(false);
-  
+
   const favoriteMovies = movies.filter((movie) => {
     return user.FavoriteMovies.includes(movie.id)
   });
@@ -27,7 +27,7 @@ export const ProfileView = ({ user, setUser, token, movies, onlogout }) => {
     };
 
     fetch(`https://you-can-run.herokuapp.com/users/${user.Username}`, {
-      method: "PUT",
+      method: "POST",
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
@@ -117,7 +117,7 @@ export const ProfileView = ({ user, setUser, token, movies, onlogout }) => {
       <Row>
         <h3>Favorite Movies:</h3>
         {favoriteMovies.map((movie) => (
-          <Col className="mb-5" key={movie.id} md={4}>
+          <Col className="mb-5" key={movie._id} md={4}>
             <MovieCard movie={movie}></MovieCard>
           </Col>
         ))}
@@ -126,9 +126,9 @@ export const ProfileView = ({ user, setUser, token, movies, onlogout }) => {
         Delete my account
       </Button>
       <Modal show={showModal} onHide={handleCloseModal}>
-        <Modal.Header closeButton>
+        <ModalHeader closeButton>
           <Modal.Title>Delete Account</Modal.Title>
-        </Modal.Header>
+        </ModalHeader>
         <Modal.Body>Are you sure you want to delete your account?</Modal.Body>
         <Modal.Footer>
           <Button variant="primary" onClick={handleDeleteUser}>Yes</Button>
