@@ -10,7 +10,7 @@ export const ProfileView = ({ user, setUser, token, movies, onlogout }) => {
   const [showModal, setShowModal] = useState(false);
 
   const favoriteMovies = movies.filter((movie) => {
-    return user.FavoriteMovies.includes(movie.id)
+    return user.FavoriteMovies.includes(movie._id)
   });
 
   const handleShowModal = () => setShowModal(true);

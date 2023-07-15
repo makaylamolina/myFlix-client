@@ -47370,7 +47370,7 @@ const ProfileView = ({ user , setUser , token , movies , onlogout  })=>{
     const [birthday, setBirthday] = (0, _react.useState)(user.Birthday);
     const [showModal, setShowModal] = (0, _react.useState)(false);
     const favoriteMovies = movies.filter((movie)=>{
-        return user.FavoriteMovies.includes(movie.id);
+        return user.FavoriteMovies.includes(movie._id);
     });
     const handleShowModal = ()=>setShowModal(true);
     const handleCloseModal = ()=>setShowModal(false);
