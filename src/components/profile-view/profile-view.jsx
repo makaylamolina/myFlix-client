@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button, Form, Col, Row, Modal, ModalHeader } from "react-bootstrap";
 import { MovieCard } from "../movie-card/movie-card";
-import { useSSRSafeId } from "@react-aria/ssr";
 
 export const ProfileView = ({ user, setUser, token, movies, onlogout }) => {
   const [username, setUsername] = useState(user.Username);
@@ -9,6 +8,7 @@ export const ProfileView = ({ user, setUser, token, movies, onlogout }) => {
   const [email, setEmail] = useState(user.Email);
   const [birthday, setBirthday] = useState(user.Birthday);
   const [showModal, setShowModal] = useState(false);
+  
   const favoriteMovies = movies.filter((movie) => {
     return user.FavoriteMovies.includes(movie.id)
   });

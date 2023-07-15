@@ -7,7 +7,6 @@ export const MovieCard = ({ movie }) => {
     <Card
       className='h-100'
       border='primary'
-      style={{ cursor: 'pointer' }}
     >
       <Card.Img
         variant="top"
@@ -17,8 +16,9 @@ export const MovieCard = ({ movie }) => {
       <Card.Body>
         <Card.Title>{movie.Title}</Card.Title>
         <Card.Text>{movie.Director.Name}</Card.Text>
-        <Link to={`/movies/${encodeURIComponent(movie.Title)}`}>
-          <Button variant="link">Open</Button>
+        <Link to={`/movies/${encodeURIComponent(movie._id)}`}>
+        {/* <Link to={`/movies/${movie.Title}`}> */}
+          <Button variant="link" style={{ cursor: 'pointer' }}>Open</Button>
         </Link>
       </Card.Body>
     </Card>
