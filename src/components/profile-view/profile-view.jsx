@@ -10,7 +10,7 @@ export const ProfileView = ({ user, setUser, token, movies, onlogout }) => {
   const [showModal, setShowModal] = useState(false);
 
   const favoriteMovies = movies.filter((movie) => {
-    return user.favoriteMovies.includes(movie._id)
+    return user.FavoriteMovies.includes(movie._id)
   });
 
   const handleShowModal = () => setShowModal(true);
@@ -70,6 +70,14 @@ export const ProfileView = ({ user, setUser, token, movies, onlogout }) => {
         </Col>
       </Row>
       <Row>
+        <h3>Favorite Movies:</h3>
+        {favoriteMovies.map((movie) => (
+          <Col className="mb-5" key={movie._id} md={4}>
+            <MovieCard movie={movie}></MovieCard>
+          </Col>
+        ))}
+      </Row>
+      <Row>
         <h3>Update your information:</h3>
         <Form onSubmit={handleSubmit}>
           <Form.Group>
@@ -113,14 +121,6 @@ export const ProfileView = ({ user, setUser, token, movies, onlogout }) => {
           </Form.Group>
           <Button variant="primary" type="submit">Save changes</Button>
         </Form>
-      </Row>
-      <Row>
-        <h3>Favorite Movies:</h3>
-        {favoriteMovies.map((movie) => (
-          <Col className="mb-5" key={movie._id} md={4}>
-            <MovieCard movie={movie}></MovieCard>
-          </Col>
-        ))}
       </Row>
       <Button variant="primary" onClick={handleShowModal}>
         Delete my account
