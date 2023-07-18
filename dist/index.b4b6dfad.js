@@ -27585,7 +27585,7 @@ const MovieView = ({ movies , user , setUser , token  })=>{
             setUser(data);
         });
     };
-    const movie = movies.find((m)=>m.Title === movieId);
+    const movie = movies.find((m)=>m._id === movieId);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Img, {

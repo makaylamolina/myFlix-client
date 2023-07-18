@@ -48,7 +48,7 @@ export const MovieView = ({ movies, user, setUser, token }) => {
     })
   };
   
-  const movie = movies.find((m) => m.Title === movieId);
+  const movie = movies.find((m) => m._id === movieId);
 
   return (
     <Card>
