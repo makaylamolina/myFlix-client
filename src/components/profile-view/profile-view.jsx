@@ -9,9 +9,9 @@ export const ProfileView = ({ user, setUser, token, movies, onlogout }) => {
   const [birthday, setBirthday] = useState(user.Birthday);
   const [showModal, setShowModal] = useState(false);
 
-  const favoriteMovies = movies.filter((movie) => {
-    return user.FavoriteMovies.includes(movie._id)
-  });
+    const favoriteMovies = movies.filter((movie) => {
+        return user.FavoriteMovies.includes(movie._id)
+    });
 
   const handleShowModal = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
@@ -80,7 +80,7 @@ export const ProfileView = ({ user, setUser, token, movies, onlogout }) => {
       <Row>
         <h3>Update your information:</h3>
         <Form onSubmit={handleSubmit}>
-          <Form.Group>
+          <Form.Group controlId="formUsername">
             <Form.Label>Username:</Form.Label>
             <Form.Control
               type="text"
@@ -91,7 +91,7 @@ export const ProfileView = ({ user, setUser, token, movies, onlogout }) => {
             />
           </Form.Group>
 
-          <Form.Group>
+          <Form.Group controlId="formPassword">
             <Form.Label>Password:</Form.Label>
             <Form.Control
               type="password"
@@ -101,7 +101,7 @@ export const ProfileView = ({ user, setUser, token, movies, onlogout }) => {
             />
           </Form.Group>
 
-          <Form.Group>
+          <Form.Group controlId="formEmail">
             <Form.Label>Email:</Form.Label>
             <Form.Control
               type="email"
@@ -111,7 +111,7 @@ export const ProfileView = ({ user, setUser, token, movies, onlogout }) => {
             />
           </Form.Group>
 
-          <Form.Group>
+          <Form.Group controlId="formBirthday">
             <Form.Label>Birthday:</Form.Label>
             <Form.Control
               type="date"
