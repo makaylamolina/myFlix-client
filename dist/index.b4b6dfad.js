@@ -27556,7 +27556,7 @@ const MovieView = ({ movies , user , setUser , token  })=>{
         setFavorite(isFavorited);
     }, []);
     const removeFavorite = ()=>{
-        fetch(`https://you-can-run.herokuapp.com/users/${user.Username}/${movieId}`, {
+        fetch(`https://you-can-run.herokuapp.com/users/${user.Username}/movies/${movieId}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
@@ -27571,7 +27571,7 @@ const MovieView = ({ movies , user , setUser , token  })=>{
         });
     };
     const addFavorite = ()=>{
-        fetch(`https://you-can-run.herokuapp.com/users/${user.Username}/${movieId}`, {
+        fetch(`https://you-can-run.herokuapp.com/users/${user.Username}/movies/${movieId}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
