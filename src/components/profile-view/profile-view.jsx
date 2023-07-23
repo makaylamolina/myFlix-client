@@ -70,7 +70,7 @@ export const ProfileView = ({ user, setUser, token, movies, onlogout }) => {
         </Col>
       </Row>
       <Row>
-        <h3>Favorite Movies:</h3>
+        <h3>Favorite movies:</h3>
         {favoriteMovies.map((movie) => (
           <Col className="mb-5" key={movie._id} md={4}>
             <MovieCard movie={movie}></MovieCard>
