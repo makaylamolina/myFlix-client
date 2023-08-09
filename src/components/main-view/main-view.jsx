@@ -147,6 +147,7 @@ export const MainView = () => {
                     <Col>This list is empty!</Col>
                   ) : (
                     <>
+                    {/* for every movie inside the movies array render a movie card */}
                       {movies.map((movie) => (
                         <Col className="mb-5" key={movie.Title} md={4}>
                           <MovieCard movie={movie} />
