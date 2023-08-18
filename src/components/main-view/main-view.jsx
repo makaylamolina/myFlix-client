@@ -15,6 +15,7 @@ export const MainView = () => {
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [movies, setMovies] = useState([]);
   // const [selectedMovie, setSelectedMovie] = useState(null);
+  const [filteredMovies, setFilteredMovies] = useState([]);
 
   const onLogout = () => {
     setUser(null);
@@ -51,6 +52,18 @@ export const MainView = () => {
       });
     }, [token]);
 
+    useEffect(() => {
+      setFilteredMovies(movies);
+    }, [movies]);
+
+    const handleSearchInput = (e) => {
+      const searchWord = e.target.value.toLowerCase();
+      let tempArray = movies.filter((movie) =>
+        movie.Title.toLowerCase().includes(searchWord)
+      );
+      setFilteredMovies(tempArray);
+    };
+
     return (
       <BrowserRouter>
         <NavigationBar
@@ -58,6 +71,7 @@ export const MainView = () => {
           onLoggedOut={() => {
             setUser(null);
           }}
+          handleSearchInput={handleSearchInput}
         />
         <Row className="justify-content-md-center">
           <Routes>
@@ -148,7 +162,7 @@ export const MainView = () => {
                   ) : (
                     <>
                     {/* for every movie inside the movies array render a movie card */}
-                      {movies.map((movie) => (
+                      {filteredMovies.map((movie) => (
                         <Col className="mb-5" key={movie.Title} md={4}>
                           <MovieCard movie={movie} />
                         </Col>
