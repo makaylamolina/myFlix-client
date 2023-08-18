@@ -51,22 +51,22 @@ export const MovieView = ({ movies, user, setUser, token }) => {
   const movie = movies.find((m) => m._id === movieId);
 
   return (
-    <Card>
-      <Card.Img variant="top" src={movie.ImagePath}/>
-      <Card.Body>
+    <Card border="0">
+      <Card.Img variant="right" src={movie.ImagePath} width="300" alt={movie.Title} className="m-3"/>
+      <Card.Body className="m-3">
         <Card.Title>{movie.Title}</Card.Title>
         <Card.Text>Description: {movie.Description}</Card.Text>
         <Card.Text>Genre: {movie.Genre.Name}</Card.Text>
       </Card.Body>
 
       {Favorite ? (
-        <Button onClick={removeFavorite}>Remove from favorites</Button>
+        <Button onClick={removeFavorite} className="m-2">Remove favorite</Button>
       ) : (
-        <Button onClick={addFavorite}>Add to favorites</Button>
+        <Button onClick={addFavorite} className="m-2">Add favorite</Button>
       )}
 
       <Link to={"/"}>
-        <Button>Back</Button>
+        <Button className="m-3">Back</Button>
       </Link>
     </Card>
   )
