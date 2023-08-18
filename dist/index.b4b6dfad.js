@@ -27376,7 +27376,7 @@ const MainView = ()=>{
         lineNumber: 68,
         columnNumber: 7
     }, undefined);
-};
+}; //removed parcel cache
 _s(MainView, "2pX5kjWmoqAR8O/wyEXrFk7wFUo=");
 _c = MainView;
 var _c;
