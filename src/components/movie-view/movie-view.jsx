@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
-import { Button, Card} from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 
 export const MovieView = ({ movies, user, setUser, token }) => {
   const { movieId } = useParams();
@@ -50,58 +50,61 @@ export const MovieView = ({ movies, user, setUser, token }) => {
   
   const movie = movies.find((m) => m._id === movieId);
 
-  return (
-    <Card>
-      <Card.Img variant="top" src={movie.ImagePath}/>
-      <Card.Body>
-        <Card.Title>{movie.Title}</Card.Title>
-        <Card.Text>Description: {movie.Description}</Card.Text>
-        <Card.Text>Genre: {movie.Genre.Name}</Card.Text>
-      </Card.Body>
-
-      {Favorite ? (
-        <Button onClick={removeFavorite}>Remove from favorites</Button>
-      ) : (
-        <Button onClick={addFavorite}>Add to favorites</Button>
-      )}
-
-      <Link to={"/"}>
-        <Button>Back</Button>
-      </Link>
-    </Card>
-  )
-
   // return (
-  //   <div>
-  //     <div>
-  //       <img className="w-100" src={movie.ImagePath} />
-  //     </div>
-  //     <div>
-  //       <span>Title: </span>
-  //       <span>{movie.Title}</span>
-  //     </div>
-  //     <div>
-  //       <span>Description: </span>
-  //       <span>{movie.Description}</span>
-  //     </div>
-  //     <div>
-  //       <span>Director: </span>
-  //       <span>{movie.Director.Name}</span>
-  //     </div>
-  //     <div>
-  //       <span>Genre: </span>
-  //       <span>{movie.Genre.Name}</span>
-  //     </div>
+  //   <Card border="0">
+  //     <Card.Img variant="right" src={movie.ImagePath} width="300" alt={movie.Title} className="m-3"/>
+  //     <Card.Body className="m-3">
+  //       <Card.Title>{movie.Title}</Card.Title>
+  //       <Card.Text>Description: {movie.Description}</Card.Text>
+  //       <Card.Text>Genre: {movie.Genre.Name}</Card.Text>
+  //     </Card.Body>
 
-  //     {isFavorite ? (
-  //       <Button onClick={removeFavorite}>Remove from favorites</Button>
+  //     {Favorite ? (
+  //       <Button onClick={removeFavorite} className="m-2">Remove favorite</Button>
   //     ) : (
-  //       <Button onClick={addFavorite}>Add to favorites</Button>
+  //       <Button onClick={addFavorite} className="m-2">Add favorite</Button>
   //     )}
 
   //     <Link to={"/"}>
-  //       <Button>Back</Button>
+  //       <Button className="m-3">Back</Button>
   //     </Link>
-  //   </div>
+  //   </Card>
   // )
+
+  return (
+    <div>
+      <img
+        src={movie.ImagePath}
+        width="300"
+        alt={movie.Title}
+        className="my-4"
+      />
+      <div className="my-3">
+        <strong className="me-2">Title:</strong>
+        <span>{movie.Title}</span>
+      </div>
+      <div className="my-3">
+        <strong className="me-2">Description:</strong>
+        <span>{movie.Description}</span>
+      </div>
+      <div className="my-3">
+        <strong className="me-2">Genre:</strong>
+        <span>{movie.Genre.Name}</span>
+      </div>
+      <div className="my-3">
+        <strong className="me-2">Director:</strong>
+        <span>{movie.Director.Name}</span>
+      </div>
+      <div className="my-4">
+        <Link to={"/"}>
+          <Button className="m-3">Back</Button>
+        </Link>
+        {Favorite ? (
+          <Button onClick={removeFavorite} className="m-2">Remove favorite</Button>
+        ) : (
+          <Button onClick={addFavorite} className="m-2">Add favorite</Button>
+        )}
+      </div>
+    </div>
+  )
 }

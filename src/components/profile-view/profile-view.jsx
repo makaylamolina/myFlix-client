@@ -64,23 +64,23 @@ export const ProfileView = ({ user, setUser, token, movies, onlogout }) => {
     <>
       <h1>Profile</h1>
       <Row>
-        <Col>
+        <Col md={6}>
           <div>Username: {user.Username}</div>
           <div>Email: {user.Email}</div>
         </Col>
       </Row>
-      <Row>
+      <Row className="mt-4">
         <h3>Favorite movies:</h3>
         {favoriteMovies.map((movie) => (
-          <Col className="mb-5" key={movie._id} md={4}>
+          <Col className="mb-3" key={movie._id} md={3}>
             <MovieCard movie={movie}></MovieCard>
           </Col>
         ))}
       </Row>
       <Row>
         <h3>Update your information:</h3>
-        <Form onSubmit={handleSubmit}>
-          <Form.Group controlId="formUsername">
+        <Form onSubmit={handleSubmit} className="mt-4">
+          <Form.Group controlId="formUsername" className="my-3">
             <Form.Label>Username:</Form.Label>
             <Form.Control
               type="text"
@@ -91,7 +91,7 @@ export const ProfileView = ({ user, setUser, token, movies, onlogout }) => {
             />
           </Form.Group>
 
-          <Form.Group controlId="formPassword">
+          <Form.Group controlId="formPassword" className="my-3">
             <Form.Label>Password:</Form.Label>
             <Form.Control
               type="password"
@@ -101,7 +101,7 @@ export const ProfileView = ({ user, setUser, token, movies, onlogout }) => {
             />
           </Form.Group>
 
-          <Form.Group controlId="formEmail">
+          <Form.Group controlId="formEmail" className="my-3">
             <Form.Label>Email:</Form.Label>
             <Form.Control
               type="email"
@@ -111,7 +111,7 @@ export const ProfileView = ({ user, setUser, token, movies, onlogout }) => {
             />
           </Form.Group>
 
-          <Form.Group controlId="formBirthday">
+          <Form.Group controlId="formBirthday" className="my-3">
             <Form.Label>Birthday:</Form.Label>
             <Form.Control
               type="date"
@@ -122,7 +122,7 @@ export const ProfileView = ({ user, setUser, token, movies, onlogout }) => {
           <Button variant="primary" type="submit">Save changes</Button>
         </Form>
       </Row>
-      <Button variant="primary" onClick={handleShowModal}>
+      <Button variant="primary" onClick={handleShowModal} className="my-3">
         Delete my account
       </Button>
       <Modal show={showModal} onHide={handleCloseModal}>
