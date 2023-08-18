@@ -1,6 +1,5 @@
 import { Navbar, Container, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react";
 import Form from "react-bootstrap/Form";
 
 export const NavigationBar = ({ user, onLoggedOut, handleSearchInput }) => {
