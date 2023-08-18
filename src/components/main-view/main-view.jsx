@@ -178,4 +178,3 @@ export const MainView = () => {
       </BrowserRouter>
     );
   };
-//removed parcel cache
